@@ -54,10 +54,6 @@ public class ProductoActivity extends AppCompatActivity {
 
     private DatabaseReference myDataBase = FirebaseDatabase.getInstance().getReference();
 
-
-    //TODO-Pablo:   Ayudame con los dialogos de cargando y sin conexion xfavor. Es lo unico q me falta en esta actividad.
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
