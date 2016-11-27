@@ -30,6 +30,9 @@
         <activity android:name=".ProductoCompraActivity"
             android:theme="@style/AppTheme"
             android:label="Compra Producto"/>
+        <activity android:name=".FacturaActicity"
+            android:theme="@style/AppTheme"
+            android:label="Compra Producto"/>
     </application>
 
 </manifest>

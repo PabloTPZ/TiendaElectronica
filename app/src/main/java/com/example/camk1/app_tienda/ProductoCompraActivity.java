@@ -71,6 +71,7 @@ public class ProductoCompraActivity extends AppCompatActivity {
                 if (stockProducto>cantidadProducto){
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     final DialogoConfirmacion dialogo = new DialogoConfirmacion();
+                    TextView total=(TextView) findViewById(R.id.total);
                     Bundle bundle = new Bundle();
                     bundle.putString("keyProducto", keyProducto);
                     bundle.putString("nombreProd", nombreProducto);
@@ -79,7 +80,6 @@ public class ProductoCompraActivity extends AppCompatActivity {
 
 
                     dialogo.setArguments(bundle);
-                    dialogo.show(fragmentManager, "tagAlerta");
                     dialogo.show(fragmentManager, "tagAlerta");
                     dialogo.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
