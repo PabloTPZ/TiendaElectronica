@@ -23,6 +23,7 @@ public class SinConexionFragment extends DialogFragment {
     public boolean volverCargar = false;
     private DialogInterface.OnDismissListener onDismissListener;
 
+
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
