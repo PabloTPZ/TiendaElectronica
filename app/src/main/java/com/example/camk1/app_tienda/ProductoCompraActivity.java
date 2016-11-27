@@ -33,8 +33,8 @@ public class ProductoCompraActivity extends AppCompatActivity {
     //Variables
     private String keyProducto;
     private String categoria;
-    private int stockProducto;
-    private int cantidadProducto;
+    private int stockProducto=0;
+    private int cantidadProducto=0;
     private int precioProducto=0;
     private String nombreProducto;
     //Views
@@ -69,11 +69,13 @@ public class ProductoCompraActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cantidadProducto=Integer.valueOf(cantidad.getText().toString());
-
                 if (stockProducto>=cantidadProducto){
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     final DialogoConfirmacion dialogo = new DialogoConfirmacion();
-                    TextView total=(TextView) findViewById(R.id.total);
+                    //TextView total=(TextView) findViewById(R.id.total);
+
+                    descontarStock(categoria,keyProducto,stockProducto,cantidadProducto);
+
                     Bundle bundle = new Bundle();
                     bundle.putString("keyProducto", keyProducto);
                     bundle.putString("nombreProd", nombreProducto);
@@ -97,6 +99,13 @@ public class ProductoCompraActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void descontarStock(String categoria, String keyProducto, int stock, int cantidad) {
+        DatabaseReference categoriaProducto = myDataBase.child(categoria);
+        int stockRestante = stock-cantidad;
+        categoriaProducto.child(keyProducto).child("Stock").setValue(stockRestante);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;

@@ -61,7 +61,6 @@ public class ProductoListaActivity extends AppCompatActivity {
         Intent intent = getIntent();
         categoria=intent.getStringExtra("Categoria");
         tituloCategoria.setText(categoria);
-        Toast.makeText(getApplicationContext(),categoria,Toast.LENGTH_SHORT).show();
     }
 
     public void usarRecycleView(){
