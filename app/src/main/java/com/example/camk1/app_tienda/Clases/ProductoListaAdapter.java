@@ -8,7 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.camk1.app_tienda.ProductoCompraActivity;
+import com.example.camk1.app_tienda.ProductoListaActivity;
 import com.example.camk1.app_tienda.R;
 import com.squareup.picasso.Picasso;
 
@@ -29,10 +32,25 @@ public class ProductoListaAdapter extends RecyclerView.Adapter<ProductoListaAdap
 
         public ViewHolder(final View v) {
             super(v);
-            nombre = (TextView) v.findViewById(R.id.tarjetaNombre);
+            nombre = (TextView) v.findViewById(R.id.tarjetaNombreLista);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    Context context = v.getContext();
+
+                    int pos = getAdapterPosition();
+                    Producto producto = items.get(pos);
+                    String key = producto.getKey();
+                    String nombreProducto = producto.getNombre();
+
+                    Toast.makeText(context.getApplicationContext(),key+"---"+nombreProducto,Toast.LENGTH_LONG).show();
+
+                    /*
+                    Intent intent = new Intent(context, ProductoCompraActivity.class);
+                    intent.putExtra("Categoria",categoria);
+                    context.startActivity(intent);
+                    */
 
                 }
             });
@@ -51,7 +69,7 @@ public class ProductoListaAdapter extends RecyclerView.Adapter<ProductoListaAdap
     @Override
     public ViewHolder onCreateViewHolder(final ViewGroup viewGroup, final int i) {
         v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.tarjeta_producto, viewGroup, false);
+                .inflate(R.layout.tarjeta, viewGroup, false);
         /*v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

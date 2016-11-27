@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.camk1.app_tienda.ProductoCompraActivity;
+import com.example.camk1.app_tienda.ProductoListaActivity;
 import com.example.camk1.app_tienda.R;
 import com.squareup.picasso.Picasso;
 
@@ -39,8 +40,16 @@ public class TarjetaInicioAdapter extends RecyclerView.Adapter<TarjetaInicioAdap
                 public void onClick(View view) {
                     Context context = v.getContext();
 
-                    Intent intent = new Intent(context, ProductoCompraActivity.class);
+                    int pos = getAdapterPosition();
+                    TarjetaInicio tarjetaInicio = items.get(pos);
+                    String categoria = tarjetaInicio.getNombre();
+
+                    //Toast.makeText(context.getApplicationContext(),producto+"---"+urlImagen,Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(context, ProductoListaActivity.class);
+                    intent.putExtra("Categoria",categoria);
                     context.startActivity(intent);
+
                 }
             });
         }
@@ -73,7 +82,7 @@ public class TarjetaInicioAdapter extends RecyclerView.Adapter<TarjetaInicioAdap
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-       // Picasso.with(v.getContext()).load(items.get(i).getUrlImagen()).into(viewHolder.imagen);
+        Picasso.with(v.getContext()).load(items.get(i).getUrlImagen()).into(viewHolder.imagen);
         viewHolder.nombre.setText(items.get(i).getNombre());
     }
 }

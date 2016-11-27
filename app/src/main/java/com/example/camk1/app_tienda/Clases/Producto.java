@@ -5,10 +5,20 @@ package com.example.camk1.app_tienda.Clases;
  */
 
 public class Producto {
-    String nombre;
+    private String key;
+    private String nombre;
 
-    public Producto(String nombre, String imagenProducto) {
+    public Producto(String key, String nombre) {
+        this.key = key;
         this.nombre = nombre;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getNombre() {
