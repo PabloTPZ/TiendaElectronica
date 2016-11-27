@@ -73,20 +73,22 @@ public class ProductoListaActivity extends AppCompatActivity {
         super.onStart();
         DatabaseReference categoriaProducto = myDataBase.child(categoria);
         producto.clear();
+
         categoriaProducto.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Producto productoAgregar=new Producto("vacio","vacio");
                 if (dataSnapshot.hasChildren()) {
                     keyProd = nombreProd= "";
-
                     keyProd = dataSnapshot.getKey();
                     Map<String, Object> dataChild = (Map<String, Object>) dataSnapshot.getValue();
                     nombreProd = dataChild.get("Nombre").toString();
-                } else
-                    Toast.makeText(getApplicationContext(), "No se encurntran datos en la db", Toast.LENGTH_LONG).show();
-                producto.add(new Producto(keyProd,nombreProd));
+                    productoAgregar = new Producto(keyProd,nombreProd);
+                }
+                if (!producto.contains(productoAgregar) && !productoAgregar.getKey().equals("vacio")){
+                    producto.add(productoAgregar);
+                }
                 usarRecycleView();
-
             }
 
             @Override
