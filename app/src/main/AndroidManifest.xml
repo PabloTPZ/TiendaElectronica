@@ -8,13 +8,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".ContactoActivity"/>
+        <activity android:name=".ProductoActivity"/>
+        <activity android:name=".ProductoListaActivity"/>
+        <activity android:name=".ProductoCompraActivity"/>
     </application>
 
 </manifest>
