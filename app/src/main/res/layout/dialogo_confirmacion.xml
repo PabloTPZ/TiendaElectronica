@@ -56,7 +56,7 @@
         android:textColorHint="@color/colorPrimary">
 
         <EditText
-            android:id="@+id/mensaje_nombre"
+            android:id="@+id/nombre"
             style="@style/texto_registro"
             android:hint="Nombre Completo"
             android:inputType="textCapWords" />
@@ -68,7 +68,7 @@
         android:textColorHint="@color/colorPrimary">
 
         <EditText
-            android:id="@+id/mensaje_nit"
+            android:id="@+id/nit"
             style="@style/texto_registro"
             android:hint="CI o Nit"
             android:inputType="textCapWords" />

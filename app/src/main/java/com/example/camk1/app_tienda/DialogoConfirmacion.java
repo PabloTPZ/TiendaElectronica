@@ -47,11 +47,19 @@ public class DialogoConfirmacion extends DialogFragment {
         TextView compraactual=(TextView)view.findViewById(R.id.compraactual);
         cant.setText(String.valueOf(Integer.parseInt(cantidad)*Integer.parseInt(precio)));
         compraactual.setText("SU COMPRA ACTUAL ES: \n"+nombre);
+        final TextView nombrecli=(TextView)view.findViewById(R.id.nombre);
+        final TextView nit=(TextView)view.findViewById(R.id.nit);
 
         cargar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), FacturaActicity.class);
+                intent.putExtra("nombreCliente",nombrecli.getText().toString());
+                intent.putExtra("nitCliente",nit.getText().toString());
+                intent.putExtra("cantidad",cantidad);
+                intent.putExtra("precio",precio);
+                intent.putExtra("nombrep",nombre);
+                intent.putExtra("importe",String.valueOf(Integer.parseInt(cantidad)*Integer.parseInt(precio)));
                 getActivity().startActivity(intent);
                 getActivity().finish();
                 dismiss();
