@@ -36,6 +36,8 @@ public class ProductoListaActivity extends AppCompatActivity {
     private DatabaseReference myDataBase = FirebaseDatabase.getInstance().getReference();
 
 
+    //Todo-Pablo: Ayudame con los dialogos porfavor, el de conexion y el de cargando.
+
     //Variables
     private String keyProd;
     private String nombreProd;
