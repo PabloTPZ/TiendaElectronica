@@ -48,7 +48,10 @@ public class ProductoListaActivity extends AppCompatActivity {
     private String keyProd;
     private String nombreProd;
 
-
+    String cnatidad="";
+    String nombrep="";
+    String impor="";
+    String precio="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,16 @@ public class ProductoListaActivity extends AppCompatActivity {
         circular.setProgress(R.color.colorPrimary);
         Intent intent = getIntent();
         categoria=intent.getStringExtra("Categoria");
+        cnatidad = intent.getStringExtra("cantidadp");
+        nombrep = intent.getStringExtra("nombrep");
+        impor = intent.getStringExtra("importep");
+        precio=intent.getStringExtra("preciop");
+        if(cnatidad==null){
+            cnatidad="";
+            nombrep="";
+            impor="";
+            precio="";
+        }
         tituloCategoria.setText(categoria);
     }
 
@@ -86,13 +99,13 @@ public class ProductoListaActivity extends AppCompatActivity {
         categoriaProducto.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Producto productoAgregar=new Producto("vacio","vacio","vacio");
+                Producto productoAgregar=new Producto("vacio","vacio","vacio","","","","");
                 if (dataSnapshot.hasChildren()) {
                     keyProd = nombreProd= "";
                     keyProd = dataSnapshot.getKey();
                     Map<String, Object> dataChild = (Map<String, Object>) dataSnapshot.getValue();
                     nombreProd = dataChild.get("Nombre").toString();
-                    productoAgregar = new Producto(categoria,keyProd,nombreProd);
+                    productoAgregar = new Producto(categoria,keyProd,nombreProd,cnatidad,nombrep,impor,precio);
                     c=1;
                 }
                 if (!producto.contains(productoAgregar) && !productoAgregar.getKey().equals("vacio")){

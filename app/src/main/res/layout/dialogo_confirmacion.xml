@@ -12,7 +12,7 @@
 
 
         <Button
-            android:id="@+id/gragregarMas"
+            android:id="@+id/agregarMas"
             android:drawableLeft="@drawable/ic_carrito"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -26,6 +26,11 @@ public class DialogoConfirmacion extends DialogFragment {
     String cantidad="";
     String nombre="";
     String precio="";
+    String impt="";
+
+    String cnatidadp="";
+    String imporp="";
+    String preciop="";
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -37,12 +42,24 @@ public class DialogoConfirmacion extends DialogFragment {
         View view = infrater.inflate(R.layout.dialogo_confirmacion, null);
         builder.setView(view);
         ImageButton cargar = (ImageButton) view.findViewById(R.id.aceptarCompra);
+        Button agregar=(Button)view.findViewById(R.id.agregarMas);
 
         Bundle mBundle = new Bundle();
         mBundle = getArguments();
         cantidad= mBundle.getString("cantidad", "");
         nombre= mBundle.getString("nombreProd", "");
         precio=mBundle.getString("precio", "");
+        impt=mBundle.getString("imporp", "");
+
+        cnatidadp = mBundle.getString("cantidadp");
+        imporp = mBundle.getString("imporp");
+        preciop=mBundle.getString("preciop");
+
+        if(cnatidadp==null){
+            cnatidadp="";
+            imporp="";
+            preciop="";
+        }
         TextView cant=(TextView)view.findViewById(R.id.total);
         TextView compraactual=(TextView)view.findViewById(R.id.compraactual);
         cant.setText(String.valueOf(Integer.parseInt(cantidad)*Integer.parseInt(precio)));
@@ -56,6 +73,23 @@ public class DialogoConfirmacion extends DialogFragment {
                 Intent intent = new Intent(getContext(), FacturaActicity.class);
                 intent.putExtra("nombreCliente",nombrecli.getText().toString());
                 intent.putExtra("nitCliente",nit.getText().toString());
+                intent.putExtra("cantidad",cantidad);
+                intent.putExtra("precio",precio);
+                intent.putExtra("nombrep",nombre);
+                intent.putExtra("importe",String.valueOf(Integer.parseInt(cantidad)*Integer.parseInt(precio)));
+
+                intent.putExtra("cnatidadp",cnatidadp);
+                intent.putExtra("imporp",imporp);
+                intent.putExtra("preciop",preciop);
+                getActivity().startActivity(intent);
+                getActivity().finish();
+                dismiss();
+            }
+        });
+        agregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ProductoActivity.class);
                 intent.putExtra("cantidad",cantidad);
                 intent.putExtra("precio",precio);
                 intent.putExtra("nombrep",nombre);

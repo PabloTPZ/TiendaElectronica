@@ -54,6 +54,12 @@ public class ProductoActivity extends AppCompatActivity {
 
     private DatabaseReference myDataBase = FirebaseDatabase.getInstance().getReference();
 
+
+    //TODO-Pablo:   Ayudame con los dialogos de cargando y sin conexion xfavor. Es lo unico q me falta en esta actividad.
+    String cnatidad="";
+    String nombrep="";
+    String impor="";
+    String precio="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +67,19 @@ public class ProductoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         circular = ProgressDialog.show(this, "Cargando", "Aguarde un momento...", true);
         circular.setProgress(R.color.colorPrimary);
+        Intent intent = getIntent();
+            cnatidad = intent.getStringExtra("cantidad");
+            nombrep = intent.getStringExtra("nombrep");
+            impor = intent.getStringExtra("importe");
+            precio = intent.getStringExtra("precio");
+        if(cnatidad ==null){
+            cnatidad="";
+            nombrep="";
+            impor="";
+            precio="";
+            Toast.makeText(getApplicationContext(),cnatidad,Toast.LENGTH_SHORT).show();
+        }
+
     }
     public void usarRecycleView(){
         recycler = (RecyclerView) findViewById(R.id.my_recycler_producto);
@@ -93,7 +112,7 @@ public class ProductoActivity extends AppCompatActivity {
                         c=1;
                     } else
                         Toast.makeText(getApplicationContext(), "No se encurntran datos en la db", Toast.LENGTH_LONG).show();
-                    tarjeta.add(new TarjetaInicio(nombreProducto,imagenProducto));
+                    tarjeta.add(new TarjetaInicio(nombreProducto,imagenProducto,cnatidad,nombrep,impor,precio));
 
                     usarRecycleView();
 
