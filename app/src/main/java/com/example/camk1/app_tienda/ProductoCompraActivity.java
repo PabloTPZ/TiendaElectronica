@@ -98,7 +98,7 @@ public class ProductoCompraActivity extends AppCompatActivity {
                     bundle.putString("nombreProd", nombreProducto);
                     bundle.putString("precio", String.valueOf(precioProducto));
                     bundle.putString("nombreProd", nombrep+"\n"+nombreProducto);
-                    bundle.putString("precio", String.valueOf(cantidadProducto));
+                    bundle.putString("precio", String.valueOf(precioProducto));
                     bundle.putString("cantidad", String.valueOf(cantidadProducto));
 
                     bundle.putString("imporp", imporp);
