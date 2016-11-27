@@ -1,11 +1,16 @@
 package com.example.camk1.app_tienda;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -13,6 +18,7 @@ import android.widget.Toast;
 import com.example.camk1.app_tienda.Clases.Metodos;
 import com.example.camk1.app_tienda.Clases.Producto;
 import com.example.camk1.app_tienda.Clases.ProductoListaAdapter;
+import com.example.camk1.app_tienda.Clases.SinConexionFragment;
 import com.example.camk1.app_tienda.Clases.TarjetaInicio;
 import com.example.camk1.app_tienda.Clases.TarjetaInicioAdapter;
 import com.google.firebase.database.ChildEventListener;
@@ -39,8 +45,8 @@ public class ProductoActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager lManager;
 
     private Metodos metodos;
-    private int c=0;
-
+    private ProgressDialog circular;
+    int c = 1;
 
     //Variables
     private String nombreProducto;
@@ -56,6 +62,9 @@ public class ProductoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_producto);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        circular = ProgressDialog.show(this, "Cargando", "Aguarde un momento...", true);
+        circular.setProgress(R.color.colorPrimary);
     }
     public void usarRecycleView(){
         recycler = (RecyclerView) findViewById(R.id.my_recycler_producto);
@@ -85,12 +94,17 @@ public class ProductoActivity extends AppCompatActivity {
                         nombreProducto = dataSnapshot.getKey();
                         Map<String, Object> dataChild = (Map<String, Object>) dataSnapshot.getValue();
                         imagenProducto = dataChild.get("ImagenProducto").toString();
-
+                        c=1;
                     } else
                         Toast.makeText(getApplicationContext(), "No se encurntran datos en la db", Toast.LENGTH_LONG).show();
                     tarjeta.add(new TarjetaInicio(nombreProducto,imagenProducto));
+
                     usarRecycleView();
 
+                    if (c == 1) {
+                        circular.dismiss();
+                        c = 0;
+                    }
                 }
 
                 @Override
@@ -114,7 +128,33 @@ public class ProductoActivity extends AppCompatActivity {
                 }
             });
         }else {
-            Toast.makeText(getApplicationContext(),"Compruebe su conexion a internet",Toast.LENGTH_LONG).show();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            final SinConexionFragment dialogo = new SinConexionFragment();
+            dialogo.show(fragmentManager, "tagAlerta");
+            dialogo.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    if (dialogo.isVolverCargar()) {
+                        onStart();
+                    } else {
+                        Intent refresh = new Intent(getBaseContext(), MainActivity.class);
+                        startActivity(refresh);
+                        finish();
+                    }
+                }
+            });
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
