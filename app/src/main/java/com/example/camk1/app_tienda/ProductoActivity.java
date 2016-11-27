@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.camk1.app_tienda.Clases.Metodos;
 import com.example.camk1.app_tienda.Clases.Producto;
 import com.example.camk1.app_tienda.Clases.ProductoListaAdapter;
 import com.example.camk1.app_tienda.Clases.TarjetaInicio;
@@ -39,7 +40,7 @@ public class ProductoActivity extends AppCompatActivity {
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
-
+    private Metodos metodos;
     //Variables
     private String nombreProducto;
     private String imagenProducto;
@@ -76,6 +77,7 @@ public class ProductoActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         tarjeta.clear();
+        if (metodos.compruebaConexion(getBaseContext())) {
         myDataBase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -116,7 +118,8 @@ public class ProductoActivity extends AppCompatActivity {
 
             }
         });
-
+        } else {
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

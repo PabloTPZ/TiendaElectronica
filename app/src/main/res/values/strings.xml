@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">app_tienda</string>
+    <!--    Dialogo -->
+    <string name="dialogoEstasSinConexion">Estas sin conexión</string>
+    <string name="dialogoTextoDialogo">Al parecer, no estás conectado. Presiona volver a cargar para conectar.</string>
+    <string name="dialogoVolverCargar">Volver a Cargar</string>
+    <string name="dialogoCancelar">Cancelar</string>
 </resources>

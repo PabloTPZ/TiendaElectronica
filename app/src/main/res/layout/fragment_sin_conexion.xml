@@ -9,7 +9,7 @@
         android:layout_height="48dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp"
-        android:background="@drawable/ic_signal_wifi_off_black_24dp" />
+        android:background="@drawable/ic_sin_señal" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,7 +18,6 @@
         android:padding="16dp"
         android:text="@string/dialogoEstasSinConexion"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/textPrimary"
         android:textStyle="bold" />
 
     <TextView
@@ -28,7 +27,6 @@
         android:gravity="center"
         android:text="@string/dialogoTextoDialogo"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/textPrimary"
         android:textSize="16sp" />
 
     <LinearLayout
@@ -44,8 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:background="@color/colorPrimary"
-            android:text="@string/dialogoVolverCargar"
-            android:textColor="@color/fondo" />
+            android:text="@string/dialogoVolverCargar" />
 
         <View
             android:layout_width="5dp"
@@ -58,7 +55,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:background="@color/colorPrimary"
-            android:text="@string/dialogoCancelar"
-            android:textColor="@color/fondo" />
+            android:text="@string/dialogoCancelar" />
     </LinearLayout>
 </LinearLayout>
