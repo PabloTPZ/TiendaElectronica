@@ -37,8 +37,8 @@
                 android:text="Informacion "/>
             <ImageView
                 android:id="@+id/imagenpro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="132dp"
+                android:layout_height="132dp" />
         </LinearLayout>
         <View
             android:layout_width="1dp"

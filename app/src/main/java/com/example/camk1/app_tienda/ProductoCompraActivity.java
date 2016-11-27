@@ -35,7 +35,7 @@ public class ProductoCompraActivity extends AppCompatActivity {
     private String categoria;
     private int stockProducto;
     private int cantidadProducto;
-    private double precio=0;
+    private int precioProducto=0;
     private String nombreProducto;
     //Views
     private TextView informacion;
@@ -44,6 +44,7 @@ public class ProductoCompraActivity extends AppCompatActivity {
     private TextView nomProduc;
     private ImageView imagenpro;
 
+    private TextView precio;
     private DatabaseReference myDataBase = FirebaseDatabase.getInstance().getReference();
 
 
@@ -58,6 +59,7 @@ public class ProductoCompraActivity extends AppCompatActivity {
         cantidad=(EditText) findViewById(R.id.cantidad);
         nomProduc=(TextView) findViewById(R.id.nomProducto);
         imagenpro=(ImageView) findViewById(R.id.imagenpro);
+        precio = (TextView) findViewById(R.id.precio);
 
         Intent intent = getIntent();
         keyProducto = intent.getStringExtra("KeyProducto");
@@ -68,14 +70,14 @@ public class ProductoCompraActivity extends AppCompatActivity {
             public void onClick(View view) {
                 cantidadProducto=Integer.valueOf(cantidad.getText().toString());
 
-                if (stockProducto>cantidadProducto){
+                if (stockProducto>=cantidadProducto){
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     final DialogoConfirmacion dialogo = new DialogoConfirmacion();
                     TextView total=(TextView) findViewById(R.id.total);
                     Bundle bundle = new Bundle();
                     bundle.putString("keyProducto", keyProducto);
                     bundle.putString("nombreProd", nombreProducto);
-                    bundle.putString("precio", String.valueOf(cantidadProducto));
+                    bundle.putString("precio", String.valueOf(precioProducto));
                     bundle.putString("cantidad", String.valueOf(cantidadProducto));
 
 
@@ -127,7 +129,9 @@ public class ProductoCompraActivity extends AppCompatActivity {
                         nombreProducto=dataChild.get("Nombre").toString();
                         nomProduc.setText(nombreProducto);
 
-                        precio=Double.valueOf(dataChild.get("Precio").toString());
+                        precioProducto=Integer.valueOf(dataChild.get("Precio").toString());
+                        precio.setText(precioProducto+" BS");
+
                     }
                 }
             }
@@ -135,12 +139,21 @@ public class ProductoCompraActivity extends AppCompatActivity {
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 if (dataSnapshot.hasChildren()) {
                     if (dataSnapshot.getKey().equals(keyProducto)){
-                        Map<String, Object> dataChild = (Map<String, Object>) dataSnapshot.getValue();
-                        informacion.setText(dataChild.get("Descripcion").toString());
-                        Picasso.with(getApplicationContext()).load(dataChild.get("Imagen").toString()).into(imagenpro);
-                        stock.setText(dataChild.get("Stock").toString());
-                        nomProduc.setText(dataChild.get("Nombre").toString());
-                        precio=Double.valueOf(dataChild.get("Precio").toString());
+                        if (dataSnapshot.getKey().equals(keyProducto)){
+                            Map<String, Object> dataChild = (Map<String, Object>) dataSnapshot.getValue();
+                            informacion.setText(dataChild.get("Descripcion").toString());
+                            Picasso.with(getApplicationContext()).load(dataChild.get("Imagen").toString()).into(imagenpro);
+
+                            stockProducto=Integer.valueOf(dataChild.get("Stock").toString());
+                            stock.setText("Stock: "+stockProducto);
+
+                            nombreProducto=dataChild.get("Nombre").toString();
+                            nomProduc.setText(nombreProducto);
+
+                            precioProducto=Integer.valueOf(dataChild.get("Precio").toString());
+                            precio.setText(precioProducto+" BS");
+
+                        }
                     }
                 }
             }
