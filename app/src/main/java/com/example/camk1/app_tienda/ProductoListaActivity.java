@@ -44,9 +44,6 @@ public class ProductoListaActivity extends AppCompatActivity {
     int c = 0;
     private DatabaseReference myDataBase = FirebaseDatabase.getInstance().getReference();
 
-
-    //Todo-Pablo: Ayudame con los dialogos porfavor, el de conexion y el de cargando.
-
     //Variables
     private String keyProd;
     private String nombreProd;
@@ -90,13 +87,13 @@ public class ProductoListaActivity extends AppCompatActivity {
         categoriaProducto.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Producto productoAgregar=new Producto("vacio","vacio");
+                Producto productoAgregar=new Producto("vacio","vacio","vacio");
                 if (dataSnapshot.hasChildren()) {
                     keyProd = nombreProd= "";
                     keyProd = dataSnapshot.getKey();
                     Map<String, Object> dataChild = (Map<String, Object>) dataSnapshot.getValue();
                     nombreProd = dataChild.get("Nombre").toString();
-                    productoAgregar = new Producto(keyProd,nombreProd);
+                    productoAgregar = new Producto(categoria,keyProd,nombreProd);
                     c=1;
                 }
                 if (!producto.contains(productoAgregar) && !productoAgregar.getKey().equals("vacio")){

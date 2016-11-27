@@ -7,8 +7,10 @@ package com.example.camk1.app_tienda.Clases;
 public class Producto {
     private String key;
     private String nombre;
+    private String categoria;
 
-    public Producto(String key, String nombre) {
+    public Producto(String categoria, String key, String nombre) {
+        this.categoria = categoria;
         this.key = key;
         this.nombre = nombre;
     }
@@ -27,5 +29,13 @@ public class Producto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 }

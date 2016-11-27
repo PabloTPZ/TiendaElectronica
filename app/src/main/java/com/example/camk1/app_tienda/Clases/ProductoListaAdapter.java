@@ -41,16 +41,13 @@ public class ProductoListaAdapter extends RecyclerView.Adapter<ProductoListaAdap
 
                     int pos = getAdapterPosition();
                     Producto producto = items.get(pos);
-                    String key = producto.getKey();
-                    String nombreProducto = producto.getNombre();
+                    String keyProducto = producto.getKey();
+                    String categoria = producto.getCategoria();
 
-                    Toast.makeText(context.getApplicationContext(),key+"---"+nombreProducto,Toast.LENGTH_LONG).show();
-
-                    /*
                     Intent intent = new Intent(context, ProductoCompraActivity.class);
                     intent.putExtra("Categoria",categoria);
+                    intent.putExtra("KeyProducto",keyProducto);
                     context.startActivity(intent);
-                    */
 
                 }
             });
