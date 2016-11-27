@@ -21,6 +21,10 @@ public class FacturaActicity extends AppCompatActivity {
     String nombrep="";
     String impor="";
     String precio="";
+
+    String cnatidadp="";
+    String imporp="";
+    String preciop="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,15 +50,21 @@ public class FacturaActicity extends AppCompatActivity {
         nombrep = intent.getStringExtra("nombrep");
         impor = intent.getStringExtra("importe");
         precio=intent.getStringExtra("precio");
+
+        cnatidadp= intent.getStringExtra("cnatidadp");
+        imporp = intent.getStringExtra("imporp");
+        preciop=intent.getStringExtra("preciop");
+
+
         nombreCliente.setText(nombreCli);
         nitcliente.setText(nitCli);
-        cantidad.setText(cnatidad);
+        cantidad.setText(cnatidad+"\n"+cnatidad);
         descripcion.setText(nombrep);
-        importe.setText(impor);
-        unit.setText(precio);
+        importe.setText(imporp+"\n"+impor);
+        unit.setText(preciop+"\n"+precio);
         fecha.setText(String.valueOf(s));
 
-
+        total.setText(String.valueOf(Integer.parseInt(imporp)+Integer.parseInt(impor)));
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

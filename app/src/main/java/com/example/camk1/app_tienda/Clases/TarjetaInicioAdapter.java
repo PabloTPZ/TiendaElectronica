@@ -30,7 +30,6 @@ public class TarjetaInicioAdapter extends RecyclerView.Adapter<TarjetaInicioAdap
         public TextView nombre;
         public ImageView imagen;
 
-
         public ViewHolder(final View v) {
             super(v);
             nombre = (TextView) v.findViewById(R.id.tarjetaNombre);
@@ -39,15 +38,22 @@ public class TarjetaInicioAdapter extends RecyclerView.Adapter<TarjetaInicioAdap
                 @Override
                 public void onClick(View view) {
                     Context context = v.getContext();
-
                     int pos = getAdapterPosition();
                     TarjetaInicio tarjetaInicio = items.get(pos);
                     String categoria = tarjetaInicio.getNombre();
+                    String cantidad=tarjetaInicio.getCantidad();
+                    String nombrep=tarjetaInicio.getNombrep();
+                    String importe=tarjetaInicio.getImporte();
+                    String precio=tarjetaInicio.getPrecio();
 
                     //Toast.makeText(context.getApplicationContext(),producto+"---"+urlImagen,Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(context, ProductoListaActivity.class);
                     intent.putExtra("Categoria",categoria);
+                    intent.putExtra("cantidadp",cantidad);
+                    intent.putExtra("nombrep",nombrep);
+                    intent.putExtra("importep",importe);
+                    intent.putExtra("precio",precio);
                     context.startActivity(intent);
 
                 }

@@ -44,6 +44,11 @@ public class ProductoCompraActivity extends AppCompatActivity {
     private TextView nomProduc;
     private ImageView imagenpro;
 
+    String cnatidadp="";
+    String nombrep="";
+    String imporp="";
+    String preciop="";
+
     private DatabaseReference myDataBase = FirebaseDatabase.getInstance().getReference();
 
 
@@ -63,6 +68,18 @@ public class ProductoCompraActivity extends AppCompatActivity {
         keyProducto = intent.getStringExtra("KeyProducto");
         categoria = intent.getStringExtra("Categoria");
 
+        cnatidadp = intent.getStringExtra("cantidadp");
+        nombrep = intent.getStringExtra("nombrep");
+        imporp = intent.getStringExtra("importep");
+        preciop=intent.getStringExtra("preciop");
+
+        if(cnatidadp==null){
+            cnatidadp="";
+            nombrep="";
+            imporp="";
+            preciop="";
+        }
+
         compra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,10 +91,13 @@ public class ProductoCompraActivity extends AppCompatActivity {
                     TextView total=(TextView) findViewById(R.id.total);
                     Bundle bundle = new Bundle();
                     bundle.putString("keyProducto", keyProducto);
-                    bundle.putString("nombreProd", nombreProducto);
+                    bundle.putString("nombreProd", nombrep+"\n"+nombreProducto);
                     bundle.putString("precio", String.valueOf(cantidadProducto));
                     bundle.putString("cantidad", String.valueOf(cantidadProducto));
 
+                    bundle.putString("imporp", imporp);
+                    bundle.putString("preciop", preciop);
+                    bundle.putString("cantidadp", cnatidadp);
 
                     dialogo.setArguments(bundle);
                     dialogo.show(fragmentManager, "tagAlerta");

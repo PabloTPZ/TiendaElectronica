@@ -44,8 +44,16 @@ public class ProductoListaAdapter extends RecyclerView.Adapter<ProductoListaAdap
                     String keyProducto = producto.getKey();
                     String categoria = producto.getCategoria();
 
+                    String cantidad=producto.getCantidad();
+                    String nombrep=producto.getNombrep();
+                    String importe=producto.getImporte();
+                    String precio=producto.getPrecio();
                     Intent intent = new Intent(context, ProductoCompraActivity.class);
                     intent.putExtra("Categoria",categoria);
+                    intent.putExtra("cantidadp",cantidad);
+                    intent.putExtra("nombrep",nombrep);
+                    intent.putExtra("importep",importe);
+                    intent.putExtra("precio",precio);
                     intent.putExtra("KeyProducto",keyProducto);
                     context.startActivity(intent);
 
