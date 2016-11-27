@@ -74,7 +74,6 @@ public class ProductoListaActivity extends AppCompatActivity {
             precio="";
         }
         tituloCategoria.setText(categoria);
-        Toast.makeText(getApplicationContext(),categoria,Toast.LENGTH_SHORT).show();
     }
 
     public void usarRecycleView(){
