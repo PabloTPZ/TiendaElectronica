@@ -7,6 +7,7 @@ import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -50,21 +51,22 @@ public class FacturaActicity extends AppCompatActivity {
         nombrep = intent.getStringExtra("nombrep");
         impor = intent.getStringExtra("importe");
         precio=intent.getStringExtra("precio");
-
         cnatidadp= intent.getStringExtra("cnatidadp");
         imporp = intent.getStringExtra("imporp");
         preciop=intent.getStringExtra("preciop");
 
-
         nombreCliente.setText(nombreCli);
         nitcliente.setText(nitCli);
-        cantidad.setText(cnatidad+"\n"+cnatidad);
+        cantidad.setText(cnatidadp+"\n"+cnatidad);
         descripcion.setText(nombrep);
-        importe.setText(imporp+"\n"+impor);
         unit.setText(preciop+"\n"+precio);
-        fecha.setText(String.valueOf(s));
 
+        importe.setText(imporp+"\n"+impor);
+        fecha.setText(String.valueOf(s));
+    if (!imporp.equals("")){
         total.setText(String.valueOf(Integer.parseInt(imporp)+Integer.parseInt(impor)));
+    }else
+        total.setText(String.valueOf(impor));
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
