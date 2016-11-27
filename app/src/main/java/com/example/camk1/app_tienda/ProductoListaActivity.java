@@ -30,6 +30,7 @@ public class ProductoListaActivity extends AppCompatActivity {
         TextView nombrepro=(TextView)findViewById(R.id.nombreProducto);
 
 
+
     }
     public void usarRecycleView(){
         recycler = (RecyclerView) findViewById(R.id.my_recycler_view);
