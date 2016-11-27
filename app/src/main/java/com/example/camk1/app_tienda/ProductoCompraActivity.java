@@ -92,7 +92,6 @@ public class ProductoCompraActivity extends AppCompatActivity {
                     //TextView total=(TextView) findViewById(R.id.total);
 
                     descontarStock(categoria,keyProducto,stockProducto,cantidadProducto);
-
                     Bundle bundle = new Bundle();
                     bundle.putString("keyProducto", keyProducto);
                     bundle.putString("nombreProd", nombreProducto);
