@@ -1,5 +1,6 @@
 package com.example.camk1.app_tienda;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.camk1.app_tienda.Clases.Metodos;
 import com.example.camk1.app_tienda.Clases.Producto;
 import com.example.camk1.app_tienda.Clases.ProductoListaAdapter;
 import com.example.camk1.app_tienda.Clases.TarjetaInicio;
@@ -36,11 +38,19 @@ public class ProductoActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
 
+    private Metodos metodos;
+    private int c=0;
+
+
     //Variables
     private String nombreProducto;
     private String imagenProducto;
 
     private DatabaseReference myDataBase = FirebaseDatabase.getInstance().getReference();
+
+
+    //TODO-Pablo:   Ayudame con los dialogos de cargando y sin conexion xfavor. Es lo unico q me falta en esta actividad.
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,44 +73,48 @@ public class ProductoActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        super.onStart();
         tarjeta.clear();
-        myDataBase.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if (dataSnapshot.hasChildren()) {
-                    nombreProducto="";
-                    imagenProducto="https://firebasestorage.googleapis.com/v0/b/tiendaelec-3e964.appspot.com/o/Motores%2FpruebaImagen.jpg?alt=media&token=0bf267e0-11d5-4ba7-bc54-7bcf6bfb05f0";
-                    nombreProducto = dataSnapshot.getKey();
-                    Map<String, Object> dataChild = (Map<String, Object>) dataSnapshot.getValue();
-                    imagenProducto = dataChild.get("ImagenProducto").toString();
+        super.onStart();
+        if (metodos.compruebaConexion(getApplicationContext())){
+            myDataBase.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    if (dataSnapshot.hasChildren()) {
+                        nombreProducto="";
+                        imagenProducto="https://firebasestorage.googleapis.com/v0/b/tiendaelec-3e964.appspot.com/o/Motores%2FpruebaImagen.jpg?alt=media&token=0bf267e0-11d5-4ba7-bc54-7bcf6bfb05f0";
+                        nombreProducto = dataSnapshot.getKey();
+                        Map<String, Object> dataChild = (Map<String, Object>) dataSnapshot.getValue();
+                        imagenProducto = dataChild.get("ImagenProducto").toString();
 
-                } else
-                    Toast.makeText(getApplicationContext(), "No se encurntran datos en la db", Toast.LENGTH_LONG).show();
-                tarjeta.add(new TarjetaInicio(nombreProducto,imagenProducto));
-                usarRecycleView();
-            }
+                    } else
+                        Toast.makeText(getApplicationContext(), "No se encurntran datos en la db", Toast.LENGTH_LONG).show();
+                    tarjeta.add(new TarjetaInicio(nombreProducto,imagenProducto));
+                    usarRecycleView();
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                }
 
-            }
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                }
 
-            }
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                }
 
-            }
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                }
 
-            }
-        });
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
+                }
+            });
+        }else {
+            Toast.makeText(getApplicationContext(),"Compruebe su conexion a internet",Toast.LENGTH_LONG).show();
+        }
     }
 }
