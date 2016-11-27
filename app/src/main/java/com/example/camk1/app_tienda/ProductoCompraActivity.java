@@ -33,6 +33,10 @@ public class ProductoCompraActivity extends AppCompatActivity {
     //Variables
     private String keyProducto;
     private String categoria;
+    private int stockProducto;
+    private int cantidadProducto;
+    private double precio=0;
+    private String nombreProducto;
     //Views
     private TextView informacion;
     private TextView stock;
@@ -59,22 +63,35 @@ public class ProductoCompraActivity extends AppCompatActivity {
         keyProducto = intent.getStringExtra("KeyProducto");
         categoria = intent.getStringExtra("Categoria");
 
-        Toast.makeText(getApplicationContext(),keyProducto+"---"+categoria,Toast.LENGTH_LONG).show();
-
         compra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                final DialogoConfirmacion dialogo = new DialogoConfirmacion();
-                dialogo.show(fragmentManager, "tagAlerta");
-                dialogo.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        if (dialogo.isVolverCargar()) {
-                            onStart();
+                cantidadProducto=Integer.valueOf(cantidad.getText().toString());
+
+                if (stockProducto>cantidadProducto){
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    final DialogoConfirmacion dialogo = new DialogoConfirmacion();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("keyProducto", keyProducto);
+                    bundle.putString("nombreProd", nombreProducto);
+                    bundle.putString("precio", String.valueOf(cantidadProducto));
+                    bundle.putString("cantidad", String.valueOf(cantidadProducto));
+
+
+                    dialogo.setArguments(bundle);
+                    dialogo.show(fragmentManager, "tagAlerta");
+                    dialogo.show(fragmentManager, "tagAlerta");
+                    dialogo.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            if (dialogo.isVolverCargar()) {
+                                onStart();
+                            }
                         }
-                    }
-                });
+                    });
+                }else{
+                    Toast.makeText(getApplication(),"No hay stock disponible para realizar la comprar",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -103,8 +120,14 @@ public class ProductoCompraActivity extends AppCompatActivity {
                         Map<String, Object> dataChild = (Map<String, Object>) dataSnapshot.getValue();
                         informacion.setText(dataChild.get("Descripcion").toString());
                         Picasso.with(getApplicationContext()).load(dataChild.get("Imagen").toString()).into(imagenpro);
-                        stock.setText("Stock:"+dataChild.get("Stock").toString());
-                        nomProduc.setText(dataChild.get("Nombre").toString());
+
+                        stockProducto=Integer.valueOf(dataChild.get("Stock").toString());
+                        stock.setText("Stock: "+stockProducto);
+
+                        nombreProducto=dataChild.get("Nombre").toString();
+                        nomProduc.setText(nombreProducto);
+
+                        precio=Double.valueOf(dataChild.get("Precio").toString());
                     }
                 }
             }
@@ -117,6 +140,7 @@ public class ProductoCompraActivity extends AppCompatActivity {
                         Picasso.with(getApplicationContext()).load(dataChild.get("Imagen").toString()).into(imagenpro);
                         stock.setText(dataChild.get("Stock").toString());
                         nomProduc.setText(dataChild.get("Nombre").toString());
+                        precio=Double.valueOf(dataChild.get("Precio").toString());
                     }
                 }
             }
