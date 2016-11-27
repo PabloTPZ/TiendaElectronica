@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(producto);
             }
         });
+        //
         contacto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
