@@ -17,24 +17,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="45dp"
+        android:textSize="35dp"
         android:textColor="@android:color/background_dark"
         android:textStyle="normal|bold"
-        android:text="BIENVENIDO A LA TIENDA CORTOCIRCUITO" />
+        android:text="BIENVENIDO" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="35dp"
+        android:textColor="@android:color/background_dark"
+        android:textStyle="normal|bold"
+        android:text="A LA TIENDA" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="35dp"
+        android:textColor="@android:color/background_dark"
+        android:textStyle="normal|bold"
+        android:text="CORTOCIRCUITO" />
+
     <LinearLayout
-        android:paddingTop="32dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
         <Button
             android:id="@+id/producto"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_weight="0.5"
+            android:textColor="@color/texto"
             android:layout_height="wrap_content"
             android:text="PRODUCTOS"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_light" />
         <Button
             android:id="@+id/contacto"
-            android:layout_width="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/texto"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:text="CONTACTANOS"/>
     </LinearLayout>
