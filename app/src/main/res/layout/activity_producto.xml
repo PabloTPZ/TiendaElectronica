@@ -2,7 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:paddingTop="64dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <TextView
+        android:gravity="center"
+        android:textSize="24dp"
+        android:textColor="@android:color/background_dark"
+        android:textStyle="normal|bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TIPO PRODUCTO"/>
 
     <android.support.v7.widget.RecyclerView
         android:paddingTop="16dp"
