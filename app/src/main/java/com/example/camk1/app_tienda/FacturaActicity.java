@@ -66,7 +66,7 @@ public class FacturaActicity extends AppCompatActivity {
         String monto[]=impor.split("\n");
         int totalc=0;
         for (int i=0;i<monto.length;i++){
-
+//
             if(monto[i].equals("")){
                monto[i]="0";
             }
