@@ -58,7 +58,7 @@ public class DialogoConfirmacion extends DialogFragment {
         preciop=mBundle.getString("preciop","");
         nombrep = mBundle.getString("nombrep","");
 
-        Toast.makeText(getActivity(),cnatidadp,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(),cnatidadp,Toast.LENGTH_SHORT).show();
 
         TextView cant=(TextView)view.findViewById(R.id.total);
         TextView compraactual=(TextView)view.findViewById(R.id.compraactual);
@@ -70,7 +70,7 @@ public class DialogoConfirmacion extends DialogFragment {
             int totalc=0;
             for (int i=0;i<monto.length;i++){
 //
-                Toast.makeText(getContext(),monto[i],Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(),monto[i],Toast.LENGTH_SHORT).show();
                 if(monto[i].equals("")){
                     monto[i]="0";
                 }

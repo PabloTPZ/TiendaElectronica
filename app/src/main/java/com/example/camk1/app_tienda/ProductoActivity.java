@@ -73,7 +73,7 @@ public class ProductoActivity extends AppCompatActivity {
             nombrep = intent.getStringExtra("nombrep");
             impor = intent.getStringExtra("importe");
             precio = intent.getStringExtra("precio");
-        Toast.makeText(getBaseContext(),cnatidad,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getBaseContext(),cnatidad,Toast.LENGTH_SHORT).show();
 
     }
     public void usarRecycleView(){
