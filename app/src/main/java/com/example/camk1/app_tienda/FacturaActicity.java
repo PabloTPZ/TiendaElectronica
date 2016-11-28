@@ -57,16 +57,27 @@ public class FacturaActicity extends AppCompatActivity {
 
         nombreCliente.setText(nombreCli);
         nitcliente.setText(nitCli);
-        cantidad.setText(cnatidadp+"\n"+cnatidad);
+        cantidad.setText(cnatidad);
         descripcion.setText(nombrep);
-        unit.setText(preciop+"\n"+precio);
+        unit.setText(precio);
 
-        importe.setText(imporp+"\n"+impor);
+        importe.setText(impor);
         fecha.setText(String.valueOf(s));
-    if (!imporp.equals("")){
-        total.setText(String.valueOf(Integer.parseInt(imporp)+Integer.parseInt(impor)));
-    }else
-        total.setText(String.valueOf(impor));
+        String monto[]=impor.split("\n");
+        int totalc=0;
+        for (int i=0;i<monto.length;i++){
+
+            if(monto[i].equals("")){
+               monto[i]="0";
+            }
+        }
+        for (int i=0;i<monto.length;i++){
+
+            if(Integer.parseInt(monto[i])!=0){
+                totalc=totalc+Integer.parseInt(monto[i]);
+            }
+        }
+        total.setText(String.valueOf(totalc));
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

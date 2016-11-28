@@ -75,12 +75,7 @@ public class ProductoCompraActivity extends AppCompatActivity {
         imporp = intent.getStringExtra("importep");
         preciop=intent.getStringExtra("preciop");
 
-        if(cnatidadp==null){
-            cnatidadp="";
-            nombrep="";
-            imporp="";
-            preciop="";
-        }
+
 
         compra.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,13 +89,15 @@ public class ProductoCompraActivity extends AppCompatActivity {
                     descontarStock(categoria,keyProducto,stockProducto,cantidadProducto);
                     Bundle bundle = new Bundle();
                     bundle.putString("keyProducto", keyProducto);
-                    bundle.putString("nombreProd", nombrep+"\n"+nombreProducto);
+                    bundle.putString("nombreProd", nombreProducto);
                     bundle.putString("precio", String.valueOf(precioProducto));
                     bundle.putString("cantidad", String.valueOf(cantidadProducto));
 
+                    bundle.putString("cnatidadp", cnatidadp);
+                    bundle.putString("nombrep", nombrep);
                     bundle.putString("imporp", imporp);
                     bundle.putString("preciop", preciop);
-                    bundle.putString("cantidadp", cnatidadp);
+
 
                     dialogo.setArguments(bundle);
                     dialogo.show(fragmentManager, "tagAlerta");

@@ -66,13 +66,8 @@ public class ProductoListaActivity extends AppCompatActivity {
         cnatidad = intent.getStringExtra("cantidadp");
         nombrep = intent.getStringExtra("nombrep");
         impor = intent.getStringExtra("importep");
-        precio=intent.getStringExtra("preciop");
-        if(cnatidad==null){
-            cnatidad="";
-            nombrep="";
-            impor="";
-            precio="";
-        }
+        precio=intent.getStringExtra("precio");
+
         tituloCategoria.setText(categoria);
     }
 
