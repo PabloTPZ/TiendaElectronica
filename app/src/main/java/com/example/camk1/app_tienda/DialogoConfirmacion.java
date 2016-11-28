@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -28,9 +29,10 @@ public class DialogoConfirmacion extends DialogFragment {
     String precio="";
     String impt="";
 
-    String cnatidadp="";
-    String imporp="";
-    String preciop="";
+    String cnatidadp;
+    String imporp;
+    String preciop;
+    String nombrep;
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -51,15 +53,13 @@ public class DialogoConfirmacion extends DialogFragment {
         precio=mBundle.getString("precio", "");
         impt=mBundle.getString("imporp", "");
 
-        cnatidadp = mBundle.getString("cantidadp");
-        imporp = mBundle.getString("imporp");
-        preciop=mBundle.getString("preciop");
+        cnatidadp = mBundle.getString("cnatidadp","");
+        imporp = mBundle.getString("imporp","");
+        preciop=mBundle.getString("preciop","");
+        nombrep = mBundle.getString("nombrep","");
 
-        if(cnatidadp==null){
-            cnatidadp="";
-            imporp="";
-            preciop="";
-        }
+        Toast.makeText(getActivity(),cnatidadp,Toast.LENGTH_SHORT).show();
+
         TextView cant=(TextView)view.findViewById(R.id.total);
         TextView compraactual=(TextView)view.findViewById(R.id.compraactual);
         cant.setText(String.valueOf(Integer.parseInt(cantidad)*Integer.parseInt(precio)));
@@ -73,10 +73,10 @@ public class DialogoConfirmacion extends DialogFragment {
                 Intent intent = new Intent(getContext(), FacturaActicity.class);
                 intent.putExtra("nombreCliente",nombrecli.getText().toString());
                 intent.putExtra("nitCliente",nit.getText().toString());
-                intent.putExtra("cantidad",cantidad);
-                intent.putExtra("precio",precio);
-                intent.putExtra("nombrep",nombre);
-                intent.putExtra("importe",String.valueOf(Integer.parseInt(cantidad)*Integer.parseInt(precio)));
+                intent.putExtra("cantidad",cnatidadp+"\n"+cantidad);
+                intent.putExtra("precio",preciop+"\n"+precio);
+                intent.putExtra("nombrep",nombrep+"\n"+nombre);
+                intent.putExtra("importe",imporp+"\n"+String.valueOf(Integer.parseInt(cantidad)*Integer.parseInt(precio)));
 
                 intent.putExtra("cnatidadp",cnatidadp);
                 intent.putExtra("imporp",imporp);
@@ -90,10 +90,12 @@ public class DialogoConfirmacion extends DialogFragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ProductoActivity.class);
-                intent.putExtra("cantidad",cantidad);
-                intent.putExtra("precio",precio);
-                intent.putExtra("nombrep",nombre);
-                intent.putExtra("importe",String.valueOf(Integer.parseInt(cantidad)*Integer.parseInt(precio)));
+
+                intent.putExtra("cantidad",cnatidadp+"\n\n"+cantidad);
+                intent.putExtra("precio",preciop+"\n\n"+precio);
+                intent.putExtra("nombrep",nombrep+"\n"+nombre);
+                intent.putExtra("importe",imporp+"\n\n"+String.valueOf(Integer.parseInt(cantidad)*Integer.parseInt(precio)));
+
                 getActivity().startActivity(intent);
                 getActivity().finish();
                 dismiss();

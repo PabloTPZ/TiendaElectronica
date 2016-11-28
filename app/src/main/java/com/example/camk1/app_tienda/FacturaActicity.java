@@ -7,6 +7,7 @@ import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -50,21 +51,33 @@ public class FacturaActicity extends AppCompatActivity {
         nombrep = intent.getStringExtra("nombrep");
         impor = intent.getStringExtra("importe");
         precio=intent.getStringExtra("precio");
-
         cnatidadp= intent.getStringExtra("cnatidadp");
         imporp = intent.getStringExtra("imporp");
         preciop=intent.getStringExtra("preciop");
 
-
         nombreCliente.setText(nombreCli);
         nitcliente.setText(nitCli);
-        cantidad.setText(cnatidad+"\n"+cnatidad);
+        cantidad.setText(cnatidad);
         descripcion.setText(nombrep);
-        importe.setText(imporp+"\n"+impor);
-        unit.setText(preciop+"\n"+precio);
-        fecha.setText(String.valueOf(s));
+        unit.setText(precio);
 
-        total.setText(String.valueOf(Integer.parseInt(imporp)+Integer.parseInt(impor)));
+        importe.setText(impor);
+        fecha.setText(String.valueOf(s));
+        String monto[]=impor.split("\n");
+        int totalc=0;
+        for (int i=0;i<monto.length;i++){
+//
+            if(monto[i].equals("")){
+               monto[i]="0";
+            }
+        }
+        for (int i=0;i<monto.length;i++){
+
+            if(Integer.parseInt(monto[i])!=0){
+                totalc=totalc+Integer.parseInt(monto[i]);
+            }
+        }
+        total.setText(String.valueOf(totalc));
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -53,7 +53,7 @@ public class ProductoListaAdapter extends RecyclerView.Adapter<ProductoListaAdap
                     intent.putExtra("cantidadp",cantidad);
                     intent.putExtra("nombrep",nombrep);
                     intent.putExtra("importep",importe);
-                    intent.putExtra("precio",precio);
+                    intent.putExtra("preciop",precio);
                     intent.putExtra("KeyProducto",keyProducto);
                     context.startActivity(intent);
 

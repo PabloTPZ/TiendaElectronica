@@ -59,6 +59,8 @@ public class ProductoActivity extends AppCompatActivity {
     String nombrep="";
     String impor="";
     String precio="";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,13 +73,7 @@ public class ProductoActivity extends AppCompatActivity {
             nombrep = intent.getStringExtra("nombrep");
             impor = intent.getStringExtra("importe");
             precio = intent.getStringExtra("precio");
-        if(cnatidad ==null){
-            cnatidad="";
-            nombrep="";
-            impor="";
-            precio="";
-            Toast.makeText(getApplicationContext(),cnatidad,Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(getBaseContext(),cnatidad,Toast.LENGTH_SHORT).show();
 
     }
     public void usarRecycleView(){
