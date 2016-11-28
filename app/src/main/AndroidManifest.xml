@@ -33,6 +33,7 @@
         <activity android:name=".FacturaActicity"
             android:theme="@style/AppTheme"
             android:label="Compra Producto"/>
+
     </application>
 
 </manifest>

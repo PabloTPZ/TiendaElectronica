@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +33,7 @@ public class FacturaActicity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_factura);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        Button aceptar=(Button)findViewById(R.id.aceptar);
         TextView fecha=(TextView)findViewById(R.id.fecha);
         Date d = new Date();
         CharSequence s  = DateFormat.format("MMMM d, yyyy ", d.getTime());
@@ -78,6 +79,14 @@ public class FacturaActicity extends AppCompatActivity {
             }
         }
         total.setText(String.valueOf(totalc));
+        aceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent producto = new Intent(getBaseContext(), MainActivity.class);
+                finish();
+                startActivity(producto);
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

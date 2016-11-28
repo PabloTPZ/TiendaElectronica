@@ -62,10 +62,34 @@ public class DialogoConfirmacion extends DialogFragment {
 
         TextView cant=(TextView)view.findViewById(R.id.total);
         TextView compraactual=(TextView)view.findViewById(R.id.compraactual);
-        cant.setText(String.valueOf(Integer.parseInt(cantidad)*Integer.parseInt(precio)));
+        if(imporp.equals("")){
+            cant.setText(String.valueOf(Integer.parseInt(cantidad)*Integer.parseInt(precio)));
+        }else{
+            String con=imporp+"\n"+String.valueOf(Integer.parseInt(cantidad)*Integer.parseInt(precio));
+            String monto[]=con.split("\n");
+            int totalc=0;
+            for (int i=0;i<monto.length;i++){
+//
+                Toast.makeText(getContext(),monto[i],Toast.LENGTH_SHORT).show();
+                if(monto[i].equals("")){
+                    monto[i]="0";
+                }
+            }
+            for (int i=0;i<monto.length;i++){
+
+                if(Integer.parseInt(monto[i])!=0){
+                    totalc=totalc+Integer.parseInt(monto[i]);
+                }
+            }
+            cant.setText(String.valueOf(totalc));
+        }
         compraactual.setText("SU COMPRA ACTUAL ES: \n"+nombre);
         final TextView nombrecli=(TextView)view.findViewById(R.id.nombre);
         final TextView nit=(TextView)view.findViewById(R.id.nit);
+
+
+
+
 
         cargar.setOnClickListener(new View.OnClickListener() {
             @Override
